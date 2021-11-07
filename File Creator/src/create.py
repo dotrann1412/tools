@@ -37,7 +37,7 @@ def split_command(argv):
 		if f == True:
 			file_list.append(argv[i])
 		if d == True:
-			folder.append(argv[i])
+			folder_list.append(argv[i])
 
 split_command(sys.argv)
 file_creator(file_list)
