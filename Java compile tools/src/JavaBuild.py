@@ -55,7 +55,6 @@ def detect_main_function():
 			script += line + '\n'
 
 		script = remove_comments(script)
-		print(script)
 		if script.find(main_function_based) != -1:
 			main_file_list.append(file)
 
@@ -63,9 +62,16 @@ package_list = [package[1:len(package)] for package in package_list]
 detect_main_function()
 
 with open('Makefile', 'w') as make:
-	make.write('MAKEFLAGS += --silent\n')
+	make.write('MAKEFLAGS += --silent\n\n')
 	destination_file_str = ""
+
 	for package in package_list:
-		make.write('{}.class: {}/*.java\n\tjavac -cp . {}/*.java -d .\n\n'.format(package[package.index('/') + 1:len(package)], package, package))
+		s = package[package.index('/') + 1:len(package)]
+		make.write('{}.class: {}/*.java\n\tjavac -cp . {}/*.java -d .\n\n'.format(s, s, s))
 		destination_file_str += "{}/*.class ".format(package)
-	make.write('clean:\n\t{}'.format(destination_file_str))
+	
+	main_file = main_file_list[0][main_file_list[0].index('/') + 1: len(main_file_list[0])]
+	make.write('run:\n\tjava {}\n\n'.format(main_file))
+
+
+	make.write('clean:\n\trm -f -- {}'.format(destination_file_str))

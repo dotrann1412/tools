@@ -1,15 +1,13 @@
-1: /1/*.java
-	javac -cp . /1/*.java
+MAKEFLAGS += --silent
 
-2: /2/*.java
-	javac -cp . /2/*.java
+DTO.class: DTO/*.java
+	javac -cp . DTO/*.java -d .
 
-3/4: /3/4/*.java
-	javac -cp . /3/4/*.java
+GUI.class: GUI/*.java
+	javac -cp . GUI/*.java -d .
 
-3/5: /3/5/*.java
-	javac -cp . /3/5/*.java
+run:
+	java GUI/Tester.java
 
-3/6: /3/6/*.java
-	javac -cp . /3/6/*.java
-
+clean:
+	rm -f -- /DTO/*.class /GUI/*.class 
