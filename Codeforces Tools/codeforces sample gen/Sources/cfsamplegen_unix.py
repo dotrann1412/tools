@@ -27,8 +27,11 @@ print("Problems list: " + str(problems_index_list))
 #change the default contest directory
 contest_directory = '/home/ndo_tran/Documents/Coding/Contest/Codeforces/' + contest_name
 
-if(os.path.exists(contest_directory) == False):
-	os.makedirs(contest_directory, exist_ok=True)
+if(os.path.exists(contest_directory) == True):
+	os.system("subl \"" + contest_directory + "\"")
+	exit(0)
+
+os.mkdir(contest_directory)
 
 template_signature = """/*
  * Author : DoTran
@@ -37,9 +40,9 @@ template_signature = """/*
 
 """ %time.ctime(time.time())
 
-#if you need to create script file with template
-#create a cpp template file and change the path to the template file
-#or delete the next 4 lines if u dont need to create a script file with template
+# if you need to create script file with template
+# create a cpp template file and change the path to the template file
+# or delete the next 4 lines if u dont need to create a script file with template
 template_path = "/home/ndo_tran/Documents/Templates/cptemplate.cpp"
 
 str_template = ""
@@ -52,10 +55,10 @@ for problem in problems_index_list:
 		problem_file.write(template_signature)
 		problem_file.write(str_template)
 
-#generate the in/out file at contest directory
+# generate the in/out file at contest directory
 os.system("echo >\"" + contest_directory + "/inp.txt\"")
 os.system("echo >\"" + contest_directory + "/out.txt\"")
 
-#open contest folder with sublime text - change if you use a nother code editor or delete
-#if you dont want to use
+# open contest folder with sublime text - change if you use a nother code editor or delete
+# if you dont want to use
 os.system("subl \"" + contest_directory + "\"")
