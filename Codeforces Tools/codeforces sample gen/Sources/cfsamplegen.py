@@ -74,7 +74,7 @@ def parse_problem(contest_id, problem):
 		problem_file.write(str_template)
 
 	# print('[DEBUG] ', f'https://codeforces.com/contest/{contest_id}/problem/{problem}')
-	try: pass
+	try:
 		pdfkit.from_url(f'https://codeforces.com/contest/{contest_id}/problem/{problem}', pdf_path)
 	except Exception as err: 
 		print(f'[ERROR][{contest_id}][{problem}]: ', err)
