@@ -1,0 +1,19 @@
+<snippet>
+	<content><![CDATA[
+template <class T> 
+std::istream &operator >> (std::istream &s, std::vector<T> &a) {
+	for(T &x: a) s >> x;
+	return s;
+}
+
+template <class T> 
+std::ostream &operator << (std::ostream &s, const std::vector<T> &a) {
+	for(const T &x: a) s << x << ' ';
+	return s;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>_vector_in_out_</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

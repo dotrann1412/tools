@@ -1,0 +1,39 @@
+{
+    "shell_cmd": "g++ -Wall -std=c++17 \"${file_name}\" -o \"${file_base_name}\"",
+    "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+    "working_dir": "${file_path}",
+    "selector": "source.c++",
+    "shell": false,
+
+    "variants":
+    [
+        {
+            "name": "Build and Run - WSL",
+            "shell_cmd": "bash -c \"g++ -std=c++17 \"${file_name}\" -o \"${file_base_name}\" && ./${file_base_name} <inp.txt >out.txt\"",
+        },
+        {
+            "name": "Build - WSL",
+            "shell_cmd": "bash -c \"g++ -std=c++17 \"${file_name}\" -o \"${file_base_name}\"\""
+        },
+        {
+            "name": "Build and Run",
+            "shell_cmd": "g++ -std=c++17 \"${file_name}\" -o \"${file_base_name}\" && \"${file_base_name}\"<inp.txt >out.txt",
+        },
+        {
+            "name": "Build",
+            "shell_cmd": "g++ -std=c++17 \"${file_name}\" -o \"${file_base_name}\""
+        },
+        {
+            "name": "Make project - Makefile",
+            "shell_cmd": "bash -c \"make\"",
+        },
+        {
+            "name": "Make clean",
+            "shell_cmd": "bash -c \"rm -f -- *.o -f -- main -f -- *.exe -f -- ${file_base_name}\"",
+        },
+        {
+            "name": "Generate in/out file",
+            "shell_cmd": "echo >inp.txt && echo >out.txt",
+        },
+    ]
+}

@@ -1,0 +1,63 @@
+<snippet>
+	<content><![CDATA[
+	                                   /*i                                                          
+	                                 BMMMMMa                                                        
+	                                MMMMMM@MM                                                       
+	                              8MMMMMMMMMM@2                                                     
+	                             MMMMMBBBBWMMM@M                                                    
+	                            iMM;         SMM                                                    
+	                             MM           MM                                                    
+	                             S2 :Xi,,,;X, 2X                                                    
+	                             ir  : ;Si :  ;:                                                    
+	                             X7    S;X   :;X                                                    
+	                             irZ   i7:   0;i                                                    
+	                                S   7   S                                                       
+	                                Xii:.:;;S                                                       
+	                             ,rB.        ,,i                                                    
+	                         :2ZZ7  B.     i,.;Mi8X;                                                
+	                      .2rSZS ;; ;7        2: 0 0X0                                              
+	                     2X ,r Z  X7.Z       ,a Zi S 8;7                                            
+	                    Z;  ,S:S  @X7 0      0 ;8 2,:8 i2                                           
+	                   2r .. 8   X  X iZ    2; W  8 ;8  rX                                          
+	                  .a ,.  2:  , 7r  iZ  XX 8r S7 7a   a                                          
+	                  0 ..    W.   8  .  a0i 2a  0  aX .  8                                         
+	                 :S ..   2S.  Z:    rZ. X8  ar  Bi .. X                                         
+	                 8 ..  ,8;   Z    rZS  7B  .0  ,B ...  a                                        
+	                 Z ..  8:   ZXirS2X.  7W.  8i  S2 ...  Z                                        
+	                iX .. ,0   2r;ri,    ,a:  7a   B,   .. S,                                       
+	                2i .  Sr  27   ..  ...  . r.  7Z   Xi. 7;                                       
+	                Z ... 8  2r ..............   ,W. :ZX.. :;                                       
+	                a .. :7 2; ........ ......  ,8r XZ, .. .X                                       
+	               ;; .. S;Z8  .....  i2.....  iB7 22  ...  2                                       
+	               8 ..  @S.Z, ...  .28i ...,.rB; S7   .... Z                                       
+	               Z .. X2  ,Z  . .S87  ..,,,S0, 7M:rX: ... 2                                       
+	              a:   .0 .;;Mi  iZ7    .,:,:7   B  r 2; .. ,2                                      
+	             .a   .M277i. 8         .      .rX  S  0 ... 2                                      
+	             0   :0;   .,.XZ:ii;;7Zr;XXr77XXB;  ; 2W .... Z                                     
+	            a, :2a  7SX7r7r77rrrrrXriW      iX  0a XX ...  Z                                    
+	           ;;,2S777Xar::::,,,,.     X.      :;7X:Z X: ...,  Z                                   
+	         aZMXX:                 ..  a   :r722;; :S,  ...,:i  8@8                                
+	        a  ,.  .....         .,,.. SM2r7r:. ;aZiS  ...,:::..  MXa                               
+	      :MM        ............,... ,B.XX.       , ....:::     2i;M2.                             
+	     ZM: a     i  .....           Bi  i2Si         .:,:  :.r2  Z0raZ                            
+	    M2XS.:2  XMWX       ....    ;Z, .   :X2r:.          ZM0a  BW;7778                           
+	    MXiaWX0M0MS:8i  .X0X     ;;7i :aZS;    i7;;i7WZ0Xi:aMXiXSMZ:777,W                           
+	    0MXMB0W@Z;ir,ZBWW8XXa7;aWBa,;ZaX;;XZ7:SZS7;7Z27XSa0W7i;;;XaZ@0:aa                           
+	     ;@Mi;B8;X8X7Z@S;;X;;@MWX:X@WiiSM2i.BMZrrXWB;X7r;;aa;XB7i7M0,8Zi                            
+	       Mrii7X@S7BM2i;iMB2M8S;r::Z2BWXSZX87;7riiWWWWiri,ZMZ2W0BX;,2                              
+	  ;:;;rM2irir@;;:;8WXXM7:;ZW8riiBM2;ri;ZB;;i78@ZX.0X;8@Zr; MZi;;:W7;;i;                         
+	  :MWX7SMZr:2Z;7X;,;0Mar7;:;ZWXW0;;7777:rB;Z@8r;7i:@W8r;r7.a0:;X02XS@M,                         
+	    XW2;r0W2WSi7777:S@;;77Xr:XMBr;77777X XM07;r7X7 aM;;77X,SW7Z87raW7                           
+	      X8ZXXZWMX;;rr:ZWi;r7777ia@;;r777Xr 2@;;r77Xr X@i;r;i;@0ZSSZ87                             
+	         :MMXX8Zaa2X2M0Sr;rr;;:B0Xrrrri.r@ri;rrr;:7@ZX2a228XSMM.                                
+	           ,aZ7XXXXa2XZ8822SXXa8@W02S2SaMW2XXS2a220S2a7XXXXZ2.                                  
+	             ,2ZZZMM82277XaBWWMX::;7S7r;:SMBWBaSXX220MMZZZS.                                    
+	                  ia@MMMMMBX  MW088B@B880@M  SWMMMMM@2:                                         
+	                               X2ZZ0@8ZZ*/
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>antibug</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

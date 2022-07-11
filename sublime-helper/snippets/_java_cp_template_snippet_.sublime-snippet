@@ -1,0 +1,76 @@
+<snippet>
+	<content><![CDATA[
+
+/* 
+ *	Author: 	DoTran
+ *	Created: 	14 09 21
+*/
+
+import static java.lang.Integer.parseInt;
+import static java.lang.Long.parseLong;
+import static java.lang.Float.parseFloat;
+import static java.lang.System.arraycopy;
+import static java.lang.System.exit;
+import static java.util.Arrays.copyOf;
+ 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.NoSuchElementException;
+import java.util.Random;
+import java.util.StringTokenizer;
+import java.util.Arrays;
+
+public class ${TM_FILENAME/(.+)\..+|.*/$1/:name}{
+
+	private static BufferedReader in;
+	private static PrintWriter out;
+	private static StringTokenizer strToken;
+
+	private static int scanInt() throws IOException {
+		return parseInt(scanString());
+	}
+ 
+	private static long scanLong() throws IOException {
+		return parseLong(scanString());
+	}
+
+	private static float scanFloat() throws IOException {
+		return parseFloat(scanString());
+	}
+ 
+	static String scanString() throws IOException {
+		while (strToken == null || !strToken.hasMoreTokens()) {
+			strToken = new StringTokenizer(in.readLine());
+		}
+		return strToken.nextToken();
+	}
+
+	static void solve() throws IOException{
+		//Your's code goes here!
+		$1
+	}
+
+	public static void main(String[] args) {
+		try {
+			in = new BufferedReader(new InputStreamReader(System.in));
+			out = new PrintWriter(System.out);
+
+			for(int iCase = scanInt(); iCase > 0; --iCase)
+				solve();
+
+			in.close();
+			out.close();
+		} catch (Throwable e) {
+			e.printStackTrace();
+			exit(1);
+		}
+	}
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>_cp_template_</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.java</scope>
+</snippet>

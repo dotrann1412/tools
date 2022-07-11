@@ -1,0 +1,28 @@
+<snippet>
+	<content><![CDATA[
+#ifndef _EDGE_
+#define _EDGE_
+
+class EDGE{
+public:
+	int u, v, c;
+	EDGE(int x,int y, int z){
+		u = x, v = y, c = z;
+	}
+	EDGE(){};
+	friend bool operator < (EDGE a, EDGE b){
+		return a.c < b.c;
+	} 
+	friend istream& operator >> (istream& s, EDGE& a){
+		s >> a.u >> a.v >> a.c;
+		return s;
+	}
+};
+
+#endif
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>_edge_class_</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

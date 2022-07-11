@@ -1,0 +1,41 @@
+<snippet>
+	<content><![CDATA[
+#ifndef _DSU_
+#define _DSU_
+ 
+class DSU{
+	std::vector<int> par;
+public:
+	DSU(int n){
+		par.resize(n, -1);
+	}
+
+	int find(int node){
+		if(par[node] < 0) return node;
+		return par[node] = find(par[node]);
+	}
+
+	bool merge(int u, int v){
+		/*merge by size*/
+		u = find(u), v = find(v);
+		if(u == v) return false;
+		if(par[u] > par[v]) swap(u, v);
+		par[u] += par[v];
+		par[v] = u;
+		return true;
+	}
+
+	// check all the non-empty buckets with the given criteria (validate function)
+	bool check(std::function<bool(int)> validate) {
+		for (auto x: par) if (x < 0 && !validate(-x)) return false;
+		return true;
+	}
+};
+
+#endif
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>__dsu__</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

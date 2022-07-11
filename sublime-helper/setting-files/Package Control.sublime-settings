@@ -1,0 +1,30 @@
+{
+	"bootstrapped": true,
+	"debug": false,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"1337 Color Scheme",
+		"3024 Color Scheme",
+		"Abstract Markup Language",
+		"BracketHighlighter",
+		"Browser Sync",
+		"C++ Snippets",
+		"Colorsublime",
+		"CppToolkit",
+		"CUDA C++",
+		"GitGutter",
+		"GitSavvy",
+		"InsertDate",
+		"JavaImports",
+		"Markdown Extended",
+		"MarkdownLivePreview",
+		"MarkdownPreview",
+		"Package Control",
+		"Python Completions",
+		"Python Debugger",
+		"Terminus",
+	],
+}

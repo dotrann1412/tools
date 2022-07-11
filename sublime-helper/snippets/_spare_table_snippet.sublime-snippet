@@ -1,0 +1,47 @@
+<snippet>
+	<content><![CDATA[
+struct SparseTable
+{
+	std::vector<std::vector<int>> table;
+	int size, lg;
+
+	SparseTable() {
+		this->size = this->lg = 0;
+	}
+
+	SparseTable(std::vector<int>& array) {
+		this->assign(array);
+	}
+
+	int max_bit(int num) {
+		for(int i = 30; i >= 0; --i) if(num >> i & 1) return i;
+		return 0;
+	}
+
+	void assign(std::vector<int>& array) {
+		this->size = array.size();
+		this->lg = max_bit(this->size);
+		this->table.assign(this->size, std::vector<int>(this->lg + 1, 1 << 31 - 1));
+		for(int i = 0; i < this->size; ++i)
+			this->table[i][0] = array[i];
+		for(int k = 1; k <= this->lg; ++k) {
+			for(int i = this->size - 1; i >= 0; --i) {
+				if(i + (1 << (k - 1)) < this->size) {
+					table[i][k] = min(table[i][k - 1], table[i + (1 << (k - 1))][k - 1]);
+				}
+			}
+		}
+	}
+
+	int get(int left, int right) {
+		int range = right - left + 1;
+		int rmb = max_bit(range);
+		return min(table[left][rmb], table[left + range - (1 << rmb)][rmb]);
+	}
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>_spare_table_</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

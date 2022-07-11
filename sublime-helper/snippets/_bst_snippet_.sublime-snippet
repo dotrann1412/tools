@@ -1,0 +1,158 @@
+<snippet>
+	<content><![CDATA[
+//Binary Search Tree
+//ref: https://www.programiz.com/dsa/binary-search-tree
+template <class DTYPE>
+class BST
+{
+private:
+	class Node
+	{
+	public:
+		DTYPE data;
+		Node *left, *right;
+
+		Node() {
+			left = right = nullptr;
+		}
+
+		Node(DTYPE data) {
+			this->data = data;
+			left = right = nullptr;
+		}
+
+		~Node() {
+			left = right = nullptr;
+		}
+	};
+private:
+	Node* head;
+	
+public:
+	BST() {
+		this->head = nullptr;
+	}
+
+	~BST() {
+		this->free(head);
+	}
+
+private:
+	void free(Node*& head) {
+		if(!head) return;
+		free(head->left);
+		free(head->right);
+		delete head;
+	}
+
+	void preorder(Node*& node, std::vector<DTYPE>& order) {
+		if(!node) return;
+		order.push_back(node->data);
+		preorder(node->left, order);
+		preorder(node->right, order);
+	}
+
+	void inorder(Node*& node, std::vector<DTYPE>& order) {
+		if(!node) return;
+		inorder(node->left, order);
+		order.push_back(node->data);
+		inorder(node->right, order);
+	}
+
+	void posorder(Node*& node, std::vector<DTYPE>& order) {
+		if(!node) return;
+		posorder(node->left, order);
+		posorder(node->right, order);
+		order.push_back(node->data);
+	}
+
+	Node* find(Node*& head, DTYPE id) {
+		if(!head) return nullptr;
+		if(head->data == id) return head;
+		if(head->data < id) return find(head->left, id);
+		return find(head->right, id);
+	}
+
+	Node* insert(Node*& node, DTYPE id) {
+		if(!node) return new Node(id);
+		if(node->data == id) return nullptr;
+		if(node->data > id) node->left = insert(node->left, id);
+		else node->right = insert(node->right, id);
+		return node;
+	}
+
+	Node* leftmost(Node* node) {
+		if(!node) return nullptr;
+		Node* cur = node;
+		while(cur->left)
+			cur = cur->left;
+		return cur;
+	}
+
+	Node* remove(Node*& node, DTYPE id) {
+		if(!node) return nullptr;
+
+		if(node->data > id) node->left = remove(node->left, id);
+		else if(node->data < id) node->right = remove(node->right, id);
+		else {
+			
+			if(!node->left && !node->right) {
+				delete node;
+				return nullptr;
+			}
+
+			if(!node->left) {
+				Node* ret = node->right;
+				delete node;
+				return ret;
+			} else if(!node->right) {
+				Node* ret = node->left;
+				delete node;
+				return ret;
+			}
+
+			Node*tmp = leftmost(node->right);
+			node->data =tmp->data;
+			node->right = remove(node->right, tmp->data);
+		}
+		return node;
+	}
+
+public:
+	std::vector<DTYPE> preorder() {
+		std::vector<DTYPE> result;
+		preorder(this->head, result);
+		return result;
+	}
+
+	std::vector<DTYPE> inorder() {
+		std::vector<DTYPE> result;
+		inorder(this->head, result);
+		return result;
+	}
+
+	std::vector<DTYPE> posorder() {
+		std::vector<DTYPE> result;
+		posorder(this->head, result);
+		return result;
+	}
+
+	void insert(DTYPE id) {
+		this->head = this->insert(this->head, id);
+	}
+
+	void remove(DTYPE id) {
+		this->head = remove(this->head, id);
+	}
+
+	bool find(DTYPE id) {
+		return *find(head, id);
+	}
+};
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>_BST_</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

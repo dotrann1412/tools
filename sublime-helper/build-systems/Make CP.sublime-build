@@ -1,0 +1,3 @@
+{
+	"wsl": "echo >inp.txt && echo >out.txt && echo >A.cpp && echo >B.cpp && echo >C.cpp && echo >D.cpp"
+}

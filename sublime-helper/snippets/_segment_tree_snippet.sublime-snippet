@@ -1,0 +1,91 @@
+<snippet>
+	<content><![CDATA[
+#ifndef _SEGMENT_TREE_
+#define _SEGMENT_TREE_
+
+class SegmentTree{
+
+	private:
+		class Node
+		{
+		public:
+			int low, high;
+			Node(){
+				this->low = INF;
+				this->high = 0;
+			}
+			Node(int low, int high){
+				this->low = low;
+				this->high = high;
+			}
+		};
+
+		const static int N = 1e5 + 5;
+		int n;
+		struct Node seg[N];
+	/**/
+	public:
+		friend istream& operator >> (istream& s, Node &a){
+			/**/
+			s >> a.low, a.high = a.low;
+			return s;
+		}
+
+		friend ostream& operator << (ostream& s, Node a){
+			/**/
+			s << a.high - a.low;
+			return s;
+		}
+
+		friend Node operator + (Node a, Node b){
+			return Node(min(a.low, b.low), max(a.high, b.high));
+		}
+
+		friend Node& operator += (Node& a, Node b){
+			a = a + b;
+			return a;
+		}
+
+		void input(istream& s = cin){
+			s >> n;
+			for(int i = 0; i < n; ++i){
+				s >> seg[i + n];
+			}
+		}
+
+		void input(int n, istream& s = cin){
+			this->n = n;
+			for(int i = 0; i < n; ++i){
+				s >> seg[i + n];
+			}
+		}
+
+		void build_segment(){
+			for(int i = n - 1; i > 0; --i){
+				seg[i] = seg[i << 1 | 1] + seg[i << 1];
+			}
+		}
+
+		void modify(int pos, int value){
+			for(seg[pos += n] = value; pos > 0; pos >>= 1){
+				seg[pos >> 1] = seg[pos] + seg[pos ^ 1];
+			}
+		}
+
+		Node querry(int l, int r){
+			Node res;
+			for(l += n, r += n; l < r; l >>= 1, r >>= 1){
+				if(l & 1) res += seg[l++];
+				if(r & 1) res += seg[--r];
+			}
+			return res;
+		}
+	/**/
+};
+#endif
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>_segment_tree_</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

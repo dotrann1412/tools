@@ -1,0 +1,91 @@
+<snippet>
+	<content><![CDATA[
+struct Node
+{
+	int data;
+	Node *next, *prev;
+	
+	Node() {
+		data = 0;
+		next = prev = nullptr;
+	}
+
+	Node(int value) {
+		data = value;
+		next = prev = nullptr;
+	}
+};
+
+class Stack
+{
+private:
+	Node* head;
+	int len;
+
+public:
+	Stack() {
+		this->len = 0;
+		this->head = nullptr;
+	}
+
+	Stack(const Stack& another) {
+		Node* cur = another.head;
+		this->head = nullptr;
+		this->len = another.len;
+		
+		if(cur) 
+			this->head = new Node(cur->data), 
+			cur = cur->next;
+		
+		Node* iter = this->head;
+
+		while(cur) {
+			iter->next = new Node(cur->data);
+			iter = iter->next;
+			cur = cur->next;
+		}
+	}
+
+	~Stack() {
+		Node* cur = head;
+		while(head) {
+			cur = head;
+			head = head->next;
+			delete cur;
+		}
+	}
+
+	bool empty() {
+		return this->head == nullptr;
+	}
+
+	int size() {
+		return this->len;
+	}
+
+	int top() {
+		return this->head->data;
+	}
+
+	void push(int value) {
+		Node* cur = new Node(value);
+		cur->next = head;
+		head = cur;
+		++len;
+	}
+
+	void pop() {
+		if(head) {
+			Node* cur = head;
+			head = head->next;
+			delete cur;
+			--len;
+		}
+	}
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>_stack_</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

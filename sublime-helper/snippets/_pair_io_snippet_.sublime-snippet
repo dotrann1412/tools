@@ -1,0 +1,23 @@
+<snippet>
+	<content><![CDATA[
+template <class T, class U>
+std::istream &operator >> (std::istream &s, std::pair<T, U> &a) {
+	return s >> a.first >> a.second;
+}
+
+template <class T, class U>
+std::ostream &operator << (std::ostream &s, const std::pair<T, U>& a) {
+	return s << a.first << ' ' << a.second;
+}
+
+template <class T, class U> 
+std::ostream &operator << (std::ostream &s, const std::vector<std::pair<T, U>> &a) {
+	for(const std::pair<T, U> &x: a) s << "{" << x << "} ";
+	return s;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>__pair_io__</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

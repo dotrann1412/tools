@@ -1,0 +1,236 @@
+<snippet>
+	<content><![CDATA[
+//Binary search tree with self balance
+//ref: https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
+template<class DTYPE>
+class AVL
+{
+private:
+	class Node
+	{
+	public:
+		DTYPE data;
+		Node *left, *right;
+		int height;
+
+		Node() {
+			data = 0;
+			height = 0; //default
+			left = right = nullptr;
+		}
+
+		Node(DTYPE data) {
+			this->data = data;
+			height = 0;
+			left = right = nullptr;
+		}
+	};
+
+private:
+	Node* head;
+public:
+	//constructors && destructors
+	AVL() {
+		head = nullptr;
+	}
+
+	~AVL() {
+		this->clear(this->head);
+	}
+
+private:
+	//manipulations
+	int getBalance(Node* node) {
+		if(!node) return 0;
+		return height(node->left) - height(node->right);
+	}
+
+	int height(Node* node) {
+		if(!node) return 0;
+		return node->height;
+	}
+	
+	Node* leftRotate(Node* node) {
+		if(!node) return nullptr;
+
+		Node* tmp = node->right;
+
+		node->right = tmp->left;
+		tmp->left = node;
+
+		node->height = 1 + max(height(node->left), height(node->right));
+		tmp->height = 1 + max(height(tmp->left), height(tmp->right));
+		
+
+		return tmp;
+	}
+
+	Node* rightRotate(Node* node) {
+		if(!node) return nullptr;
+
+		Node* tmp = node->left;
+
+		node->left = tmp->right;
+		tmp->right = node;
+
+		node->height = 1 + max(height(node->left), height(node->right));
+		tmp->height = 1 + max(height(tmp->left), height(tmp->right));
+		
+
+		return tmp;
+	}
+
+	void clear(Node*& head) {
+		if(!head) return;
+
+		clear(head->right);
+		clear(head->left);
+		
+		delete head;
+		head = nullptr;
+	}
+
+private:
+	Node* insert(Node* node, DTYPE value) {
+		if(!node) return new Node(value);
+
+		if(node->data == value) return node;
+
+		if(node->data > value) node->left = insert(node->left, value);
+		else node->right = insert(node->right, value);
+
+		node->height = max(height(node->left), height(node->right)) + 1;
+
+		int balance = getBalance(node);
+
+		if(balance > 1 && node->left && value < node->left->data)
+			return rightRotate(node); 
+
+		if(balance < -1 && node->right && value > node->right->data)
+			return leftRotate(node);
+
+		if(balance > 1 && node->left && value > node->left->data) {
+			node->left = leftRotate(node->left);
+			return rightRotate(node); 
+		}
+
+		if(balance < -1 && node->right && value < node->right->data) {
+			node->right = rightRotate(node->right);
+			return leftRotate(node);
+		}
+
+		return node;
+	}
+
+	Node* leftmost(Node* node) {
+		if(!node) return nullptr;
+		Node* tmp = node;
+		while(tmp->left)
+			tmp = tmp->left;
+		return tmp;
+	}
+
+	Node* remove(Node* node, DTYPE value) {
+		if(!node) return nullptr;
+
+		if(node->data > value) node->left = remove(node->left, value);
+		else if(node->data < value) node->right = remove(node->right, value);
+		else {
+			if(!node->left && !node->right) {
+				delete node;
+				return nullptr;
+			}
+
+			if(!node->left) {
+				Node* ret = node->right;
+				delete node;
+				return ret;
+			} else if(!node->right) {
+				Node* ret = node->left;
+				delete node;
+				return ret;
+			}
+
+			Node *tmp = leftmost(node->right);
+			node->data = tmp->data;
+			node->right = remove(node->right, tmp->data);
+		}
+
+		node->height = 1 + max(height(node->left), height(node->right));
+
+		int balance = getBalance(node);
+
+		if(balance > 1 && getBalance(node->left) >= 0)
+			return rightRotate(node);
+
+
+		if(balance < -1 && getBalance(node->right) <= 0)
+			return leftRotate(node);
+
+		if(balance > 1 && getBalance(node->left) < 0) {
+			node->left = leftRotate(node->left);
+			return rightRotate(node);
+		}
+
+		if(balance < -1 && getBalance(node->right) > 0) {
+			node->right = rightRotate(node->right);
+			return leftRotate(node);
+		}
+
+		return node;
+	}
+
+	void preorder(Node* node, std::vector<DTYPE>& order) {
+		if(!node) return;
+		order.push_back(node->height);
+		preorder(node->left, order);
+		preorder(node->right, order);
+	}
+
+	void inorder(Node* node, std::vector<DTYPE>& order) {
+		if(!node) return;
+		inorder(node->left, order);
+		order.push_back(node->height);
+		inorder(node->right, order);
+	}
+
+	void posorder(Node* node, std::vector<DTYPE>& order) {
+		if(!node) return;
+		posorder(node->left, order);
+		posorder(node->right, order);
+		order.push_back(node->height);
+	}
+
+public:
+	void insert(DTYPE data) {
+		this->head = this->insert(this->head, data);
+	}
+
+	void remove(DTYPE data) {
+		this->head = this->remove(this->head, data);
+	}
+
+	vector<DTYPE> preorder() {
+		vector<DTYPE> res;
+		this->preorder(this->head, res);
+		return res;
+	}
+
+	vector<DTYPE> inorder() {
+		vector<DTYPE> res;
+		this->inorder(this->head, res);
+		return res;
+	}
+
+	vector<DTYPE> posorder() {
+		vector<DTYPE> res;
+		this->posorder(this->head, res);
+		return res;
+	}
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>_AVL_</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

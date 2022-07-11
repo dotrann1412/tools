@@ -1,0 +1,15 @@
+<snippet>
+	<content><![CDATA[
+long long pw(long long a, long long b){
+	const static ll MOD = 1e9 + 7;
+	if(b == 0) return 1;
+	long long res = pw(a, b / 2);
+	res = (res * res) % MOD;
+	return b & 1 ? (res * a) % MOD : res;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>_power_</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

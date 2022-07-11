@@ -1,0 +1,22 @@
+<snippet>
+	<content><![CDATA[
+
+void DBG() {
+	cerr << "]" << endl;
+}
+
+template<class H, class... T> 
+void DBG(H h, T... t) {
+	cerr << to_string(h);
+	if(sizeof...(t))
+		cerr << ", ";
+	DBG(t...);
+}
+
+#define dbg(...) cerr << "LINE(" << __LINE__ << ") -> [" << #__VA_ARGS__ << "]: [", DBG(__VA_ARGS__)
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>__DEBUG__</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

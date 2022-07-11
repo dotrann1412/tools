@@ -1,0 +1,36 @@
+<snippet>
+	<content><![CDATA[
+template<class T>
+bool _greater(T a, T b)
+{
+	return a > b;
+}
+
+template<class T>
+T* partition(T* begin, T* end, bool (*criteria)(T, T))
+{
+	T* pivot = end - 1, *iter = begin - 1;
+
+	for(T* i = begin; i < end - 1; ++i) {
+		if(criteria(*i, *pivot)) swap(*++iter, *i);
+	}
+
+	swap(*++iter, *pivot);
+	return iter;
+}
+
+template<class T>
+void _sort(T* begin, T* end, bool (*criteria)(T, T) = _greater){
+	if(begin < end) {
+		T* pivot = partition(begin, end, criteria);
+
+		_sort(begin, pivot, criteria);
+		_sort(pivot + 1, end, criteria);
+	}
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>_quick_sort_template_</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

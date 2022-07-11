@@ -1,0 +1,15 @@
+<snippet>
+	<content><![CDATA[
+
+std::vector<std::string> tokens(const std::string& s) {
+	std::stringstream ss(s);
+	std::vector<std::string> ls;
+	for (std::string tmp; ss >> tmp; ls.push_back(tmp));
+	return ls;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>__string_tokenizers__</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>
