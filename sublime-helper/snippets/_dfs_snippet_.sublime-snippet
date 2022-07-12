@@ -1,0 +1,19 @@
+<snippet>
+	<content><![CDATA[
+// template for dfs traversal in undirected graph
+// require: graph g, functional lib
+vector<int> height(n, 0);
+function<void(int, int)> dfs = [&] (int cur, int par) {
+	for (auto x: graph[cur]) {
+		if (par != x) {
+			dfs(x);
+			height[cur] = max(height[cur], 1 + height[x]);
+		}
+	}
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>__dfs__</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

@@ -1,0 +1,29 @@
+<snippet>
+	<content><![CDATA[
+// template for bfs traversal in undirected graph
+// require: graph g, functional lib
+vector<int> depth(n, 0);
+function<void(int)> bfs = [&] (int cur) {
+	queue<int> que;
+	vector<bool> mark(n, 0);
+	mark[cur] = true;
+	que.push(cur);
+	depth[cur] = 0;
+	while (!que.empty()) {
+		auto cur = que.front();
+		que.pop();
+		for (auto x: g[cur]) {
+			if (!mark[x]) {
+				mark[x] = true;
+				depth[x] = depth[cur] + 1;
+				que.push(x);
+			}
+		}
+	}
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>__bfs__</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>
