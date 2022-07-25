@@ -1,0 +1,31 @@
+<snippet>
+	<content><![CDATA[
+template<typename dist_range_t>
+dist_range_t dijkstra (int start, int end, const vector<vector<pair<int, int>>>& graph) {
+	int n = graph.size();
+	vector<dist_range_t> cost(n, INF);
+	priority_queue<pair<dist_range_t, int>, vector<pair<dist_range_t, int>>, greater<pair<dist_range_t, int>>> heap;
+	cost[start] = 0;
+	heap.push({cost[start], start});
+	while (!heap.empty()) {
+		auto cur = heap.top();
+		heap.pop();
+		
+		if (cur.fi != cost[cur.se]) continue;
+
+		for (auto x: graph[cur.se]) {
+			if (cost[x.fi] > cur.fi + x.se) {
+				cost[x.fi] = cur.fi + x.se;
+				heap.push({cost[x.fi], x.fi});
+			}
+		}
+	}
+
+	return cost[end];
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>__dijkstra__</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>
