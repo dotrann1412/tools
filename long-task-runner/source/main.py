@@ -11,7 +11,7 @@ import colorama
 colorama.init()
 
 SENDER = 'dotrann1412.dev@gmail.com'
-PASSWORD = 'tliinhkafztqxhma'
+PASSWORD = 'secret'
 
 def runner(command: list, response_to):
     start = datetime.datetime.now()
