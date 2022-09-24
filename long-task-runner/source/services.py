@@ -194,7 +194,7 @@ def build_email_content(mail_from, mail_to, subject, content, format = 'html'):
     if data is not None:
         maintype, _, subtype = (mimetypes.guess_type(data)[0] or 'application/octet-stream').partition("/")
         with open(data, 'rb') as fp:
-            email_message.add_attachment(fp.read(), maintype = maintype, subtype = subtype, filename=data)
+            email_message.add_attachment(fp.read(), maintype = maintype, subtype = subtype, filename='log.txt')
             
     return email_message
 

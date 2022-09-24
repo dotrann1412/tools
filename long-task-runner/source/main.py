@@ -11,12 +11,15 @@ import colorama
 colorama.init()
 
 SENDER = 'dotrann1412.dev@gmail.com'
-PASSWORD = 'secret'
+PASSWORD = 'tliinhkafztqxhma'
 
 def runner(command: list, response_to):
     start = datetime.datetime.now()
     
     process = subprocess.Popen(command, stdout = PIPE, stderr = PIPE, shell = True)
+    
+    for line in process.stdout:
+        print(line.decode())
     
     out, err = process.communicate()
     out, err = out.decode(), err.decode()
