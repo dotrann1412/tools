@@ -12,9 +12,18 @@
        "keys": ["alt+2"],
        "command": "terminus_open",
        "args" : {
-            "cmd": "cmd",
+            "cmd": "powershell",
             "cwd": "${file_path:${folder}}",
-            "title": "Command Prompt"
+            "title": "Powershell"
+       }
+   },
+   {
+       "keys": ["alt+3"],
+       "command": "terminus_open",
+       "args" : {
+            "cmd": "powershell",
+            "cwd": "${file_path:${folder}}",
+            "title": "Powershell"
        }
    },
 
