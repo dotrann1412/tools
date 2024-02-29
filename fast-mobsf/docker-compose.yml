@@ -1,0 +1,29 @@
+version: '2.2'
+
+services:
+  android-runtime:
+    image: budtmo/docker-android:emulator_9.0
+    ports:
+    - "6080:6080"
+    - "5554:5554"
+    - "5555:5555"
+    environment:
+      - EMULATOR_DEVICE=Samsung Galaxy S10
+      - WEB_VNC=true
+      - EMULATOR_ADDITIONAL_ARGS=-writable-system -no-snapshot
+      - EMULATOR_NO_SKIN=true
+    restart: always
+    cap_add:
+      - SYS_ADMIN
+    devices:
+      - /dev/kvm
+
+  mobsf:
+    image: opensecurity/mobile-security-framework-mobsf
+    ports:
+    - "8008:8000"
+    environment:
+      - MOBSF_ANALYZER_IDENTIFIER=android-runtime:5555
+    restart: always
+    depends_on:
+    - android-runtime
